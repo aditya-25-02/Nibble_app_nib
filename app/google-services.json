@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "435300234318",
+    "firebase_url": "https://ncs-community-app-eaff0.firebaseio.com",
+    "project_id": "ncs-community-app-eaff0",
+    "storage_bucket": "ncs-community-app-eaff0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435300234318:android:4f30e0a5d8999ae5c47f1f",
+        "android_client_info": {
+          "package_name": "com.example.ncscommunity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435300234318-mebi3ben2uilvu1d9969s2qdjvsi95fc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnupnBFuq6sNQnTNT9hJkEWQa_dhisPqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435300234318-mebi3ben2uilvu1d9969s2qdjvsi95fc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
