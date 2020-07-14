@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Nibblites"></activity>
+        <activity android:name=".projects"></activity>
+        <activity android:name=".Nibblites" />
         <activity android:name=".login_page" />
         <activity android:name=".schedule" />
         <activity android:name=".Main2Activity" />

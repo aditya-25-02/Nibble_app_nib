@@ -28,8 +28,8 @@ class login_page : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = Firebase.auth
         loginbtn.setOnClickListener{
+            loginUser()
             startActivity(Intent(this,Main2Activity::class.java))
-//            loginUser()
         }
         forgot_btn.setOnClickListener{
             val builder = AlertDialog.Builder(this)
