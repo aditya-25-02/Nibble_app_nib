@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nib_one_row"
     android:layout_width="match_parent"
     android:layout_height="272dp"
-    android:layout_marginTop="20dp"
-    android:paddingBottom="10dp"
-    android:layout_marginStart="5dp"
-    android:layout_marginEnd="5dp"
+    android:layout_marginTop="30dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    app:cardCornerRadius="20dp"
     android:padding="5dp"
-    android:background="@drawable/ic_rectangle_228"
+    android:background="#FFFFFF"
     >
-
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/nib_image"
         android:layout_width="83dp"
@@ -149,5 +150,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_logo_cf" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

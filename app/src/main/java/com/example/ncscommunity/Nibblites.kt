@@ -21,9 +21,8 @@ class Nibblites : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nibblites)
-
-        recyclerView_nib.layoutManager = LinearLayoutManager(this)
         fetchJson()
+        recyclerView_nib.layoutManager = LinearLayoutManager(this)
     }
 
     private fun fetchJson () {

@@ -30,5 +30,9 @@ class Main2Activity : AppCompatActivity() {
             val i = Intent(this,Nibblites::class.java)
             startActivity(i)
         }
+        projectsbtn.setOnClickListener {
+            val i = Intent (this,projects::class.java)
+            startActivity(i)
+        }
     }
 }
