@@ -34,5 +34,9 @@ class Main2Activity : AppCompatActivity() {
             val i = Intent (this,projects::class.java)
             startActivity(i)
         }
+        attendancebtn.setOnClickListener {
+            val i = Intent(this,attendance::class.java)
+            startActivity(i)
+        }
     }
 }
