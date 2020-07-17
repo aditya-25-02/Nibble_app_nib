@@ -30,6 +30,7 @@ class login_page : AppCompatActivity() {
         loginbtn.setOnClickListener{
             loginUser()
             startActivity(Intent(this,Main2Activity::class.java))
+            finish()
         }
         forgot_btn.setOnClickListener{
             val builder = AlertDialog.Builder(this)
