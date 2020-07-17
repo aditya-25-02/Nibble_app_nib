@@ -22,10 +22,6 @@ class Main2Activity : AppCompatActivity() {
             val j = Intent(this, schedule::class.java)
             startActivity(j)
         }
-        jobsbtn.setOnClickListener{
-            val snack =Snackbar.make(it,"Feature to be added soon !!",Snackbar.LENGTH_LONG)
-            snack.show()
-        }
         nibblitesbtn.setOnClickListener {
             val i = Intent(this,Nibblites::class.java)
             startActivity(i)
@@ -37,6 +33,14 @@ class Main2Activity : AppCompatActivity() {
         attendancebtn.setOnClickListener {
             val i = Intent(this,attendance::class.java)
             startActivity(i)
+        }
+        jobsbtn.setOnClickListener{
+            val snack =Snackbar.make(it,"Feature to be added soon !!",Snackbar.LENGTH_LONG)
+            snack.show()
+        }
+        performancebtn.setOnClickListener {
+            val snack =Snackbar.make(it,"Feature to be added soon !!",Snackbar.LENGTH_LONG)
+            snack.show()
         }
     }
 }

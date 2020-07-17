@@ -6,19 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".attendance">
 
+    <ImageView
+        android:id="@+id/backbtn3"
+        android:layout_width="26dp"
+        android:layout_height="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043"
+        app:srcCompat="@drawable/ic_back" />
+
     <TextView
         android:id="@+id/attendance_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textStyle="bold"
         android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.393" />
+        app:layout_constraintVertical_bias="0.301" />
 
     <Button
         android:id="@+id/scan_btn"
@@ -27,8 +39,58 @@
         android:text="Scan now"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/attendance_date"
-        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="@+id/attendance_date"
         app:layout_constraintTop_toBottomOf="@+id/attendance_date"
-        app:layout_constraintVertical_bias="0.296" />
+        app:layout_constraintVertical_bias="0.436" />
+
+    <TextView
+        android:id="@+id/scan_txt"
+        android:layout_width="297dp"
+        android:layout_height="79dp"
+        android:text=" Scan the QR code to mark your attendence"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/scan_btn"
+        app:layout_constraintEnd_toEndOf="@+id/attendance_date"
+        app:layout_constraintStart_toStartOf="@+id/attendance_date"
+        app:layout_constraintTop_toBottomOf="@+id/attendance_date"
+        app:layout_constraintVertical_bias="0.547" />
+
+    <TextView
+        android:id="@+id/att_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Attendence"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/backbtn3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.147"
+        app:layout_constraintStart_toStartOf="@+id/backbtn3"
+        app:layout_constraintTop_toTopOf="@+id/backbtn3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="174dp"
+        android:layout_height="209dp"
+        android:layout_marginEnd="320dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_att_leaf" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_att_graphic" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

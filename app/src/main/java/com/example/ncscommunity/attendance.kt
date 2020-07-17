@@ -36,6 +36,11 @@ class attendance : AppCompatActivity() {
             scanner.setPrompt("Scan NCS barcode")
             scanner.initiateScan()
         }
+        backbtn3.setOnClickListener {
+            val i = Intent(this,Main2Activity::class.java)
+            startActivity(i)
+            finish()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -46,7 +51,7 @@ class attendance : AppCompatActivity() {
                     Toast.makeText(this,"Cancelled",Toast.LENGTH_SHORT).show()
                 }
                 else {
-                    //Toast.makeText(this,"Scanned :" + result.contents,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Scanned :" + result.contents,Toast.LENGTH_SHORT).show()
                         val client = OkHttpClient().newBuilder()
                             .build()
                         val mediaType = MediaType.parse("text/plain")

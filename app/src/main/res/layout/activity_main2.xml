@@ -92,7 +92,7 @@
         app:srcCompat="@drawable/ic_projects" />
 
     <ImageButton
-        android:id="@+id/imageButton6"
+        android:id="@+id/performancebtn"
         android:layout_width="154dp"
         android:layout_height="178dp"
         app:layout_constraintBottom_toBottomOf="parent"
