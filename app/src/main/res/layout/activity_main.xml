@@ -68,16 +68,16 @@
         app:layout_constraintVertical_bias="0.254"
         app:srcCompat="@drawable/ic_leaf_right" />
 
-    <ImageButton
-        android:id="@+id/skipbtn"
-        android:layout_width="318dp"
-        android:layout_height="56dp"
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="216dp"
+        android:layout_height="57dp"
+        android:background="@drawable/rounded_login_btn"
+        android:text="Login"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.906"
-        app:srcCompat="@drawable/ic_skip1" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

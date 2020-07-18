@@ -25,12 +25,14 @@
 
             <TextView
                 android:id="@+id/project_name"
-                android:textColor="#262626"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:layout_below="@+id/project_image"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:textAllCaps="true"
                 android:text="JSS Infoconnect"
                 android:textSize="16sp" />
             <TextView
@@ -38,6 +40,8 @@
                 android:layout_below="@+id/project_name"
                 android:layout_marginTop="3dp"
                 android:text=" Description"
+                android:textColor="@color/black"
+                android:textStyle="normal"
                 android:textSize="16sp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
@@ -64,14 +68,6 @@
                 android:layout_marginTop="2dp"
                 android:layout_below="@+id/project_stack1"
                 />
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_below="@+id/project_github"
-                />
 
             <Button
                 android:id="@+id/project_github"
@@ -81,6 +77,16 @@
                 android:layout_below="@+id/project_stack2"
                 android:textAllCaps="false"
                 android:text="Github" />
+            <TextView
+                android:id="@+id/project_team"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                android:layout_marginLeft="18dp"
+                android:text="Team members"
+                android:layout_below="@+id/project_github"
+                />
 
         </RelativeLayout>
 

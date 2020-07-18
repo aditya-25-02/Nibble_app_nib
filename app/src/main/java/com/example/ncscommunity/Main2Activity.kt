@@ -14,10 +14,6 @@ class Main2Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
-        backbtn.setOnClickListener{
-            val i = Intent(this,MainActivity::class.java)
-            startActivity(i)
-        }
         schedulebtn.setOnClickListener {
             val j = Intent(this, schedule::class.java)
             startActivity(j)

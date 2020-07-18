@@ -21,6 +21,7 @@ class schedule : AppCompatActivity() {
         backbtn2.setOnClickListener{
             val i = Intent(this,Main2Activity::class.java)
             startActivity(i)
+            finish()
         }
     }
 

@@ -31,7 +31,7 @@ class Mainadapter (val homefeed: Array<Homefeed> , val context: Context)  : Recy
         val obj = homefeed.get(position)
         holder.view.nib_name.text = obj.full_name
         holder.view.nib_club.text = obj.club
-        holder.view.nib_work.text = obj.designation
+        holder.view.nib_work.text = "("+obj.designation+")"
         holder.view.nib_year.text = obj.year
 
         val number = obj.phone_no.trim()

@@ -67,11 +67,8 @@ class login_page : AppCompatActivity() {
                 }
             }
     }
-
     private fun updateUI(currentUser : FirebaseUser?) {
         if(currentUser != null){
-            Toast.makeText(baseContext, "Logging-in",
-                Toast.LENGTH_SHORT).show()
             startActivity(Intent(this,Main2Activity::class.java))
             finish()
         }

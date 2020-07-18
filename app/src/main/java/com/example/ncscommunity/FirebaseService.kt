@@ -13,17 +13,18 @@ class FirebaseService: FirebaseMessagingService() {
     }
 }
 fun sendTokenToServer(token: String ) {
-    val client = OkHttpClient()
-        .newBuilder()
+    val client = OkHttpClient().newBuilder()
         .build()
     val mediaType: MediaType? = MediaType.parse("text/plain")
     val body: RequestBody = MultipartBody.Builder().setType(MultipartBody.FORM)
-        .addFormDataPart("firebase_token", token)
+        .addFormDataPart("registration_id", token)
+        .addFormDataPart("type", "android")
         .build()
     val request: Request = Request.Builder()
-        .url("https://ojuswi.pythonanywhere.com/Accounts/users/me/")
-        .method("PATCH", body)
-        .addHeader("Authorization", "Token 484abdce98871be6ed3dc97d31d4b9da36aac4e0")
+        .url("https://ojuswi.pythonanywhere.com/Accounts/devices/")
+        .method("POST", body)
+        .addHeader("Authorization", "Token 52a12855ad1d10283d50acab8bbc02eb40c908e2")
         .build()
     val response: Response = client.newCall(request).execute()
+    print(response)
 }
