@@ -26,13 +26,11 @@ class Nibblites : AppCompatActivity() {
     }
 
     private fun fetchJson () {
-        println ("Fetching data ..")
+        println ("Fetching nibblites data ..")
 
         val url = "https://ojuswi.pythonanywhere.com/Nibblites/unsecuremembers/"
-
         //val request = Request.Builder().url(url).build()
         val request = Request.Builder().url(url).build()
-
         val client = OkHttpClient()
 
         client.newCall(request).enqueue(object : Callback {

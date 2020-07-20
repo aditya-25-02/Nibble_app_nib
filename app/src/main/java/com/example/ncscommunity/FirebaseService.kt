@@ -23,7 +23,7 @@ fun sendTokenToServer(token: String ) {
     val request: Request = Request.Builder()
         .url("https://ojuswi.pythonanywhere.com/Accounts/devices/")
         .method("POST", body)
-        .addHeader("Authorization", "Token 52a12855ad1d10283d50acab8bbc02eb40c908e2")
+        .addHeader("Authorization", "Token 4cace28496ff6f474e2b2357097b6ac2c46ea961")
         .build()
     val response: Response = client.newCall(request).execute()
     print(response)

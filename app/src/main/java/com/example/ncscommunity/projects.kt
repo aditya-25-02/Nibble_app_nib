@@ -20,7 +20,7 @@ class projects : AppCompatActivity() {
         recyclerView_projects.layoutManager = LinearLayoutManager(this,RecyclerView.HORIZONTAL, false)
     }
     private fun fetchJson () {
-        println ("Fetching data ..")
+        println ("Fetching project data ..")
 
         val url = "https://ojuswi.pythonanywhere.com/Projects/listall/?format=json"
 
@@ -48,4 +48,10 @@ class projects : AppCompatActivity() {
         })
     }
 }
-class Projectfeed (val project_name: String , val project_description: String ,val techstack: String,val background: String ,val github: String , val started_year: Int ,val last_modified: Int , val icon: String)
+class Projectfeed (val team : Array<Team>  , val project_name: String , val project_description: String ,val techstack: Techstack ,val background: String ,val github: String , val started_year: Int ,val last_modified: Int , val icon: String)
+class Team (val full_name : String)
+class Techstack( val languages :Array<Languages> , val frontend_techs : Array<Frontend>, val backend_techs : Array<Backend> , val app_techs : Array<App>)
+class Languages(val language : String)
+class Frontend (val frontend_tech: String)
+class Backend (val backend_tech: String)
+class App (val app_tech: String)

@@ -7,6 +7,18 @@
     tools:context=".schedule">
 
     <ImageView
+        android:id="@+id/sch_lab_topic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/sch_topic"
+        app:layout_constraintEnd_toStartOf="@+id/sch_topic"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/sch_announcer"
+        app:layout_constraintTop_toTopOf="@+id/sch_topic"
+        app:layout_constraintVertical_bias="0.533"
+        app:srcCompat="@drawable/ic_dot" />
+
+    <ImageView
         android:id="@+id/backbtn2"
         android:layout_width="26dp"
         android:layout_height="36dp"
@@ -19,29 +31,6 @@
         app:srcCompat="@drawable/ic_back" />
 
     <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="214dp"
-        android:layout_height="45dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.258"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043"
-        app:srcCompat="@drawable/ic_todayschedule" />
-
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.916" />
-
-    <ImageView
         android:id="@+id/imageView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,7 +39,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.388"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_clock" />
 
     <ImageView
@@ -65,16 +54,157 @@
         app:srcCompat="@drawable/ic_leaf_right" />
 
     <TextView
-        android:id="@+id/text_view_date"
+        android:id="@+id/sch_lab_date"
         android:layout_width="268dp"
         android:layout_height="58dp"
-        android:text="TextView"
-        android:textSize="30sp"
+        android:text="Mon, 20 July, 2020"
+        android:textColor="@color/login_bg"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.356"
+        app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.133" />
+        app:layout_constraintVertical_bias="0.172" />
+
+    <TextView
+        android:id="@+id/sch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Schedule"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/backbtn2"
+        app:layout_constraintEnd_toStartOf="@+id/imageView12"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toEndOf="@+id/backbtn2"
+        app:layout_constraintTop_toTopOf="@+id/backbtn2"
+        app:layout_constraintVertical_bias="0.529" />
+
+    <TextView
+        android:id="@+id/sch_announcer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Aditya verma,"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/sch_lab_date"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/sch_lab_date"
+        app:layout_constraintTop_toBottomOf="@+id/sch_lab_date" />
+
+    <TextView
+        android:id="@+id/sch_topic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Today's lab topic is Test lab"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.251"
+        app:layout_constraintStart_toStartOf="@+id/sch_announcer"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/sch_lab_time"
+        app:layout_constraintEnd_toEndOf="@+id/sch_lab_topic"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/sch_lab_topic"
+        app:layout_constraintTop_toTopOf="@+id/sch_lab_time"
+        app:layout_constraintVertical_bias="0.466"
+        app:srcCompat="@drawable/ic_dot" />
+
+    <TextView
+        android:id="@+id/sch_lab_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Lab will start at 4:00 pm sharp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/sch_topic"
+        app:layout_constraintTop_toBottomOf="@+id/sch_topic" />
+
+    <TextView
+        android:id="@+id/sch_lab_sp_msg"
+        android:layout_width="285dp"
+        android:layout_height="164dp"
+        android:layout_marginTop="76dp"
+        android:background="@drawable/ic_rectangle_228"
+        android:padding="5dp"
+        android:scrollbars="vertical"
+        android:text="Special Note :"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView18"
+        app:layout_constraintTop_toBottomOf="@+id/sch_lab_venue" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/sch_lab_venue"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/sch_lab_venue"
+        app:srcCompat="@drawable/ic_dot" />
+
+    <TextView
+        android:id="@+id/sch_lab_venue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Today's lab is in LAB-5"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/sch_lab_time"
+        app:layout_constraintTop_toBottomOf="@+id/sch_lab_time" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="announces that"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/sch_announcer"
+        app:layout_constraintTop_toBottomOf="@+id/sch_announcer"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/sch_lab_sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Special Note : "
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView18"
+        app:layout_constraintTop_toBottomOf="@+id/sch_lab_venue" />
 </androidx.constraintlayout.widget.ConstraintLayout>
