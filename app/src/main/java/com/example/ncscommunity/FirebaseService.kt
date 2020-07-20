@@ -9,10 +9,12 @@ val TAG = "My Firebase"
 class FirebaseService: FirebaseMessagingService() {
     override fun onNewToken(token: String) {
         Log.d( TAG, "My Firebase Token: $token")
-        sendTokenToServer(token)
+        val django_token = login_page.Preferences.getAccessToken(this)
+        val Token = "Token " + django_token
+        sendTokenToServer(token,Token)
     }
 }
-fun sendTokenToServer(token: String ) {
+fun sendTokenToServer(token: String , Token: String ) {
     val client = OkHttpClient().newBuilder()
         .build()
     val mediaType: MediaType? = MediaType.parse("text/plain")
@@ -23,7 +25,7 @@ fun sendTokenToServer(token: String ) {
     val request: Request = Request.Builder()
         .url("https://ojuswi.pythonanywhere.com/Accounts/devices/")
         .method("POST", body)
-        .addHeader("Authorization", "Token 4cace28496ff6f474e2b2357097b6ac2c46ea961")
+        .addHeader("Authorization", Token)
         .build()
     val response: Response = client.newCall(request).execute()
     print(response)

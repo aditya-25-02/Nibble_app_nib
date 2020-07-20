@@ -1,20 +1,13 @@
 package com.example.ncscommunity
 
-import android.content.Intent
-import android.content.Intent.ACTION_DIAL
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_nibblites.*
-import kotlinx.android.synthetic.main.nib_row.*
-import kotlinx.android.synthetic.main.nib_row.view.*
 import okhttp3.*
 import java.io.IOException
-import java.net.URL
+
 
 class Nibblites : AppCompatActivity() {
 
@@ -26,12 +19,20 @@ class Nibblites : AppCompatActivity() {
     }
 
     private fun fetchJson () {
+
         println ("Fetching nibblites data ..")
 
-        val url = "https://ojuswi.pythonanywhere.com/Nibblites/unsecuremembers/"
-        //val request = Request.Builder().url(url).build()
-        val request = Request.Builder().url(url).build()
-        val client = OkHttpClient()
+        //Token
+        val validate =login_page.Preferences.getAccessToken(this)
+        val token = "Token "+ validate
+
+        val client = OkHttpClient().newBuilder()
+            .build()
+        val request: Request = Request.Builder()
+            .url("https://ojuswi.pythonanywhere.com/Nibblites/members/")
+            .method("GET", null)
+            .addHeader("Authorization",token)
+            .build()
 
         client.newCall(request).enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
@@ -42,7 +43,7 @@ class Nibblites : AppCompatActivity() {
 
                 val homefeed = gson.fromJson(body,Array<Homefeed>::class.java )
 
-                //run it on the thread otherwise it will cause an error
+                //run it on the UI thread otherwise it will cause an error
                 runOnUiThread {
                     recyclerView_nib.adapter = Mainadapter(homefeed , this@Nibblites)
                 }

@@ -1,18 +1,21 @@
 package com.example.ncscommunity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.*
+import java.io.IOException
+
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,25 +24,37 @@ class MainActivity : AppCompatActivity() {
             val i = Intent (this,login_page::class.java)
             startActivity(i)
         }
-        // Initialize Firebase Auth
-        auth = Firebase.auth
     }
     public override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        updateUI(currentUser)
-    }
-    private fun updateUI(currentUser : FirebaseUser?) {
-        if(currentUser != null){
-            Toast.makeText(baseContext, "Logging-in",
-                Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this,Main2Activity::class.java))
-            finish()
+        val validate =login_page.Preferences.getAccessToken(this)
+        print("Current token is " + validate)
+
+        val validate_token = "Token "+ validate
+        if(validate!=null){
+            val client = OkHttpClient().newBuilder()
+                .build()
+            val request: Request = Request.Builder()
+                .url("https://ojuswi.pythonanywhere.com/Accounts/users/me/")
+                .method("GET", null)
+                .addHeader("Authorization", validate_token)
+                .build()
+            GlobalScope.launch (Dispatchers.Main) {
+                val response = withContext(Dispatchers.IO){ client.newCall(request).execute()}
+                if(response.code()==200){
+                    Toast.makeText(this@MainActivity,"Logging you in",Toast.LENGTH_SHORT).show()
+                    val i = Intent(this@MainActivity,Main2Activity::class.java)
+                    startActivity(i)
+                    finish()
+                }
+                else{
+                    Toast.makeText(this@MainActivity,"Your are Unauthorized",Toast.LENGTH_LONG).show()
+                }
+            }
         }
         else {
-            Toast.makeText(baseContext, "Please Login",
-                Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Please Login",Toast.LENGTH_LONG).show()
         }
     }
+
 }

@@ -10,12 +10,14 @@ import kotlinx.android.synthetic.main.activity_schedule.*
 import okhttp3.*
 import java.io.IOException
 
-
 class schedule : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schedule)
+
+        val token = intent.getStringExtra("token")
+        print(token)
 
         backbtn2.setOnClickListener{
             val i = Intent(this,Main2Activity::class.java)
@@ -26,13 +28,15 @@ class schedule : AppCompatActivity() {
     }
 
     private fun fetchJSON() {
-
         val url = "https://ojuswi.pythonanywhere.com/Attend/Schedule/"
+
+        val token1 = login_page.Preferences.getAccessToken(this)
+        val Token = "Token "+ token1
 
         val request = Request.Builder()
             .url(url)
             .method("GET",null)
-            .addHeader("Authorization","Token 4cace28496ff6f474e2b2357097b6ac2c46ea961")
+            .addHeader("Authorization",Token)
             .build()
         val client = OkHttpClient()
 

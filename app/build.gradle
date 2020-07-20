@@ -82,4 +82,6 @@ dependencies {
     // recycler view
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.google.android.gms:play-services-vision:20.1.0'
+
+    implementation 'com.airbnb.android:lottie:2.5.4'
 }

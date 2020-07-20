@@ -51,7 +51,11 @@ class attendance : AppCompatActivity() {
                     Toast.makeText(this,"Cancelled",Toast.LENGTH_SHORT).show()
                 }
                 else {
-                    Toast.makeText(this,"Scanned :" + result.contents,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Scanned !!",
+                        Toast.LENGTH_SHORT).show()
+
+                    val token1 = login_page.Preferences.getAccessToken(this)
+                    val Token = "Token " + token1
                         val client = OkHttpClient().newBuilder()
                             .build()
                         val mediaType = MediaType.parse("text/plain")
@@ -59,10 +63,7 @@ class attendance : AppCompatActivity() {
                         val request = Request.Builder()
                             .url("https://ojuswi.pythonanywhere.com/Attend/" + result.contents + "/")
                             .method("POST", body)
-                            .addHeader(
-                                "Authorization",
-                                "Token 4cace28496ff6f474e2b2357097b6ac2c46ea961"
-                            )
+                            .addHeader("Authorization",Token)
                             .build()
                     GlobalScope.launch (Dispatchers.Main) {
                          val response = withContext(Dispatchers.IO){ client.newCall(request).execute()}
