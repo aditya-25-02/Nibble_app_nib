@@ -8,6 +8,8 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.View
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -30,6 +32,8 @@ import java.util.concurrent.TimeUnit
 
 class login_page : AppCompatActivity() {
 
+    lateinit var remember_me : CheckBox
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_page)
@@ -37,20 +41,20 @@ class login_page : AppCompatActivity() {
         loginbtn.setOnClickListener{
             loginUser()
         }
-        forgot_btn.setOnClickListener{
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Generate reset link")
-            val view = layoutInflater.inflate(R.layout.forgotpass_alert,null)
-
-            val user = view.findViewById<EditText>(R.id.forgot_email)
-
-            builder.setView(view)
-            builder.setPositiveButton("Reset", DialogInterface.OnClickListener { _, _ ->
-                forgotpass(user)
-            })
-            builder.setNegativeButton("close", DialogInterface.OnClickListener { _, _ ->  })
-            builder.show()
-        }
+//        forgot_btn.setOnClickListener{
+//            val builder = AlertDialog.Builder(this)
+//            builder.setTitle("Generate reset link")
+//            val view = layoutInflater.inflate(R.layout.forgotpass_alert,null)
+//
+//            val user = view.findViewById<EditText>(R.id.forgot_email)
+//
+//            builder.setView(view)
+//            builder.setPositiveButton("Reset", DialogInterface.OnClickListener { _, _ ->
+//                forgotpass(user)
+//            })
+//            builder.setNegativeButton("close", DialogInterface.OnClickListener { _, _ ->  })
+//            builder.show()
+//        }
     }
     public object Preferences {
         fun setAccessToken(context: Context, token: String?) {
@@ -67,26 +71,25 @@ class login_page : AppCompatActivity() {
         }
     }
 
-
-    private fun forgotpass(user: EditText) {
-        if(user.text.toString().isEmpty()){
-            return
-        }
-        if(!Patterns.EMAIL_ADDRESS.matcher(user.text.toString()).matches()){
-            return
-        }
-        Firebase.auth.sendPasswordResetEmail(user.text.toString())
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(baseContext,"Reset link sent !",
-                          Toast.LENGTH_SHORT).show()
-                }
-                else {
-                    Toast.makeText(baseContext,"Something went wrong , please try again ! !",
-                        Toast.LENGTH_SHORT).show()
-                }
-            }
-    }
+//    private fun forgotpass(user: EditText) {
+//        if(user.text.toString().isEmpty()){
+//            return
+//        }
+//        if(!Patterns.EMAIL_ADDRESS.matcher(user.text.toString()).matches()){
+//            return
+//        }
+//        Firebase.auth.sendPasswordResetEmail(user.text.toString())
+//            .addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                    Toast.makeText(baseContext,"Reset link sent !",
+//                          Toast.LENGTH_SHORT).show()
+//                }
+//                else {
+//                    Toast.makeText(baseContext,"Something went wrong , please try again ! !",
+//                        Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//    }
     private fun loginUser (){
         if(user_input.text.toString().isEmpty()){
             user_input.error="Please enter Username/Email"
@@ -170,7 +173,11 @@ class login_page : AppCompatActivity() {
 
                         // Saving the token to local machine..
 
-                        Preferences.setAccessToken(this@login_page, Token.auth_token)
+                        remember_me = findViewById(R.id.remember_me) as CheckBox
+
+                        if(remember_me.isChecked) {
+                            Preferences.setAccessToken(this@login_page, Token.auth_token)
+                        }
                         dialog.dismiss()
                         val i = Intent(this@login_page, Main2Activity::class.java)
                         startActivity(i)
