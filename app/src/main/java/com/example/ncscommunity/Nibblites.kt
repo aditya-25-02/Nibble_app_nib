@@ -1,5 +1,6 @@
 package com.example.ncscommunity
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,11 +15,22 @@ class Nibblites : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nibblites)
-        fetchJson()
         recyclerView_nib.layoutManager = LinearLayoutManager(this)
     }
+    override fun onStart() {
+        super.onStart()
 
-    private fun fetchJson () {
+        //Loading..
+        var dialog = Dialog(this,android.R.style.Theme_Translucent_NoTitleBar)
+        val view = this.layoutInflater.inflate(R.layout.custom_loading_effect,null)
+        dialog.setContentView(view)
+        dialog.setCancelable(false)
+        dialog.show()
+
+        fetchJson(dialog)
+    }
+
+    private fun fetchJson (dialog: Dialog) {
 
         println ("Fetching nibblites data ..")
 
@@ -46,9 +58,11 @@ class Nibblites : AppCompatActivity() {
                 //run it on the UI thread otherwise it will cause an error
                 runOnUiThread {
                     recyclerView_nib.adapter = Mainadapter(homefeed , this@Nibblites)
+                    dialog.dismiss()
                 }
             }
             override fun onFailure(call: Call, e: IOException) {
+                dialog.dismiss()
                println("Failed to request data from nibblites api")
             }
         })

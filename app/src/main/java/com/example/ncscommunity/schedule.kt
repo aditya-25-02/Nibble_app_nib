@@ -1,5 +1,6 @@
 package com.example.ncscommunity
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
@@ -16,18 +17,27 @@ class schedule : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schedule)
 
-        val token = intent.getStringExtra("token")
-        print(token)
-
         backbtn2.setOnClickListener{
             val i = Intent(this,Main2Activity::class.java)
             startActivity(i)
             finish()
         }
-        fetchJSON()
     }
 
-    private fun fetchJSON() {
+    override fun onStart() {
+        super.onStart()
+        //Loading..
+        var dialog = Dialog(this,android.R.style.Theme_Translucent_NoTitleBar)
+        val view = this.layoutInflater.inflate(R.layout.custom_loading_effect,null)
+        dialog.setContentView(view)
+        dialog.setCancelable(false)
+        dialog.show()
+
+        fetchJSON(dialog)
+    }
+
+    private fun fetchJSON(dialog:Dialog) {
+
         val url = "https://ojuswi.pythonanywhere.com/Attend/Schedule/"
 
         val token1 = login_page.Preferences.getAccessToken(this)
@@ -51,9 +61,9 @@ class schedule : AppCompatActivity() {
 
                 val lab_date = current_sch.start_date
                 val organizer_name = current_sch.organizer.full_name + ","
-                val lab_topic = "Today's lab topic is "+ current_sch.topic
+                val lab_topic = "Lab topic is "+ current_sch.topic
                 val lab_timing = "Lab will start at "+ current_sch.start_time + " sharp"
-                val lab_name = "Today's lab is at " + current_sch.venue.venue_name
+                val lab_name = "Lab is at " + current_sch.venue.venue_name
                 val spcl_note = current_sch.additional_info
 
                 runOnUiThread {
@@ -70,6 +80,7 @@ class schedule : AppCompatActivity() {
                         sch_lab_sp_msg.text = spcl_note
                         sch_lab_sp_msg.movementMethod = ScrollingMovementMethod()
                     }
+                    dialog.dismiss()
                 }
             }
             override fun onFailure(call: Call, e: IOException) {

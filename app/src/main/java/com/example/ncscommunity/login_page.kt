@@ -1,5 +1,6 @@
 package com.example.ncscommunity
 
+import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -24,6 +25,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.*
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 
 class login_page : AppCompatActivity() {
@@ -101,6 +103,13 @@ class login_page : AppCompatActivity() {
             pass_input.requestFocus()
             return
         }
+
+        //Loading..
+        var dialog = Dialog(this,android.R.style.Theme_Translucent_NoTitleBar)
+        val view = this.layoutInflater.inflate(R.layout.custom_loading_effect,null)
+        dialog.setContentView(view)
+        dialog.setCancelable(true)
+        dialog.show()
     val thread = Thread(Runnable {
         try {
             val client = OkHttpClient()
@@ -113,15 +122,20 @@ class login_page : AppCompatActivity() {
                 .url("https://ojuswi.pythonanywhere.com/Accounts/token/login/")
                 .method("POST", body)
                 .build()
-
             client.newCall(request).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     val responsebody = response.body()?.string()
-
                     println(responsebody)
                     val gson = GsonBuilder().create()
-                    if(response.code()==200){
-                        val Token = gson.fromJson(responsebody,Auth_token::class.java)
+
+                    // If the user and password is correct
+
+                    if (response.code() == 200) {
+                        //Acces the token sent by django bakend in the response body
+
+                        val Token = gson.fromJson(responsebody, Auth_token::class.java)
+
+                        //Getting instance ID of firebase
 
                         FirebaseInstanceId.getInstance().instanceId
                             .addOnCompleteListener(OnCompleteListener { task ->
@@ -132,37 +146,43 @@ class login_page : AppCompatActivity() {
                                 // Get new Instance ID token
                                 val token = task.result?.token
 
+                                // After getting instance ID sending it to ojuswi Backend to enable firebase Push notification
                                 val client = OkHttpClient().newBuilder()
                                     .build()
                                 val mediaType: MediaType? = MediaType.parse("text/plain")
-                                val body: RequestBody = MultipartBody.Builder().setType(MultipartBody.FORM)
-                                    .addFormDataPart("registration_id",token)
-                                    .addFormDataPart("type", "android")
-                                    .build()
+                                val body: RequestBody =
+                                    MultipartBody.Builder().setType(MultipartBody.FORM)
+                                        .addFormDataPart("registration_id", token)
+                                        .addFormDataPart("type", "android")
+                                        .build()
                                 val request: Request = Request.Builder()
                                     .url("https://ojuswi.pythonanywhere.com/Accounts/devices/")
                                     .method("POST", body)
-                                    .addHeader("Authorization", "Token "+Token.auth_token)
+                                    .addHeader("Authorization", "Token " + Token.auth_token)
                                     .build()
-                                GlobalScope.launch (Dispatchers.Main) {
-                                    val response = withContext(Dispatchers.IO) { client.newCall(request).execute()}
+                                GlobalScope.launch(Dispatchers.Main) {
+                                    val response = withContext(Dispatchers.IO) {
+                                        client.newCall(request).execute()
+                                    }
                                     println("Firebase token sent ! (if not already - 201..ie saved now) (if already saved 400) ")
                                 }
                             })
 
+                        // Saving the token to local machine..
 
-                        Preferences.setAccessToken(this@login_page,Token.auth_token)
-                        val i = Intent(this@login_page,Main2Activity::class.java)
-                        i.putExtra("token",Token.auth_token)
+                        Preferences.setAccessToken(this@login_page, Token.auth_token)
+                        dialog.dismiss()
+                        val i = Intent(this@login_page, Main2Activity::class.java)
                         startActivity(i)
                         finish()
                     }
                 }
                 override fun onFailure(call: Call, e: IOException) {
-                    print("Failed to log in")
+                    print("Failed to log in....(internet error / backend error")
                 }
 
             })
+            dialog.dismiss()
             finish()
         } catch (e: Exception) {
             e.printStackTrace()

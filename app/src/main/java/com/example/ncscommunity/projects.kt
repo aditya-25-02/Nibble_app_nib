@@ -1,5 +1,6 @@
 package com.example.ncscommunity
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,10 +16,22 @@ class projects : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_projects)
-        fetchJson()
         recyclerView_projects.layoutManager = LinearLayoutManager(this,RecyclerView.HORIZONTAL, false)
     }
-    private fun fetchJson () {
+
+    override fun onStart() {
+        super.onStart()
+        //Loading..
+        var dialog = Dialog(this,android.R.style.Theme_Translucent_NoTitleBar)
+        val view = this.layoutInflater.inflate(R.layout.custom_loading_effect,null)
+        dialog.setContentView(view)
+        dialog.setCancelable(false)
+        dialog.show()
+
+        fetchJson(dialog)
+    }
+
+    private fun fetchJson (dialog:Dialog) {
         println ("Fetching project data ..")
 
         //token
@@ -42,6 +55,7 @@ class projects : AppCompatActivity() {
                 val projectfeed = gson.fromJson(body,Array<Projectfeed>::class.java)
                 runOnUiThread {
                     recyclerView_projects.adapter = projectAdapter(projectfeed,this@projects)
+                    dialog.dismiss()
                 }
             }
             override fun onFailure(call: Call, e: IOException) {

@@ -1,5 +1,6 @@
 package com.example.ncscommunity
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -13,6 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.*
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,13 +29,23 @@ class MainActivity : AppCompatActivity() {
     }
     public override fun onStart() {
         super.onStart()
+
+        var dialog = Dialog(this,android.R.style.Theme_Translucent_NoTitleBar)
+        val view = this.layoutInflater.inflate(R.layout.custom_loading_effect,null)
+        dialog.setContentView(view)
+        dialog.setCancelable(false)
+        dialog.show()
+
         val validate =login_page.Preferences.getAccessToken(this)
         print("Current token is " + validate)
 
         val validate_token = "Token "+ validate
         if(validate!=null){
             val client = OkHttpClient().newBuilder()
+                .connectTimeout(30,TimeUnit.SECONDS)
+                .readTimeout(30,TimeUnit.SECONDS)
                 .build()
+
             val request: Request = Request.Builder()
                 .url("https://ojuswi.pythonanywhere.com/Accounts/users/me/")
                 .method("GET", null)
@@ -41,19 +53,25 @@ class MainActivity : AppCompatActivity() {
                 .build()
             GlobalScope.launch (Dispatchers.Main) {
                 val response = withContext(Dispatchers.IO){ client.newCall(request).execute()}
-                if(response.code()==200){
-                    Toast.makeText(this@MainActivity,"Logging you in",Toast.LENGTH_SHORT).show()
-                    val i = Intent(this@MainActivity,Main2Activity::class.java)
-                    startActivity(i)
-                    finish()
-                }
-                else{
-                    Toast.makeText(this@MainActivity,"Your are Unauthorized",Toast.LENGTH_LONG).show()
-                }
+                dologin(response.code(),dialog)
             }
         }
         else {
-            Toast.makeText(this,"Please Login",Toast.LENGTH_LONG).show()
+            dialog.dismiss()
+            Toast.makeText(this,"Please Login",Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun dologin(code: Int , dialog: Dialog) {
+        dialog.dismiss()
+        if(code==200){
+            Toast.makeText(this@MainActivity,"Logging you in",Toast.LENGTH_SHORT).show()
+            val i = Intent(this@MainActivity,Main2Activity::class.java)
+            startActivity(i)
+            finish()
+        }
+        else{
+            Toast.makeText(this@MainActivity,"Your are Unauthorized",Toast.LENGTH_LONG).show()
         }
     }
 
