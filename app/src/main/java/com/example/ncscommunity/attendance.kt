@@ -1,10 +1,12 @@
 package com.example.ncscommunity
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.zxing.integration.android.IntentIntegrator
@@ -33,7 +35,7 @@ class attendance : AppCompatActivity() {
         scan_btn.setOnClickListener {
             val scanner =  IntentIntegrator(this)
             scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
-            scanner.setPrompt("Scan NCS barcode")
+            scanner.setPrompt("Scan NCS QR code")
             scanner.initiateScan()
         }
         backbtn3.setOnClickListener {
@@ -68,6 +70,43 @@ class attendance : AppCompatActivity() {
                     GlobalScope.launch (Dispatchers.Main) {
                          val response = withContext(Dispatchers.IO){ client.newCall(request).execute()}
                         println(response)
+                        //Attendance marked
+
+                        var dialog = Dialog(
+                            this@attendance,
+                            android.R.style.Theme_Translucent_NoTitleBar
+                        )
+                        var view : View? = null
+
+                        if(response.code()==201) {
+                             view = this@attendance.layoutInflater.inflate(
+                                R.layout.custom_attendance_marked,
+                                null
+                            )
+                        }
+                        if(response.code()==208) {
+                            view = this@attendance.layoutInflater.inflate(
+                                R.layout.custom_already_marked,
+                                null
+                            )
+                        }
+                        if(response.code()==404){
+                            view = this@attendance.layoutInflater.inflate(
+                                R.layout.custom_wrong_lab,
+                                null
+                            )
+                        }
+                        if(response.code()==410){
+                            view = this@attendance.layoutInflater.inflate(
+                                R.layout.custom_no_lab,
+                                null
+                            )
+                        }
+                        if (view != null) {
+                            dialog.setContentView(view)
+                        }
+                        dialog.setCancelable(true)
+                        dialog.show()
                     }
                 }
             }
