@@ -15,6 +15,8 @@ class Main2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
+        // Just setting on click listener
+
         schedulebtn.setOnClickListener {
             val j = Intent(this, schedule::class.java)
             startActivity(j)
@@ -31,6 +33,8 @@ class Main2Activity : AppCompatActivity() {
             val i = Intent(this,attendance::class.java)
             startActivity(i)
         }
+
+        //Showing snackbar for upcoming features
         jobsbtn.setOnClickListener{
             val snack =Snackbar.make(it,"Feature to be added soon !!",Snackbar.LENGTH_LONG)
             snack.show()

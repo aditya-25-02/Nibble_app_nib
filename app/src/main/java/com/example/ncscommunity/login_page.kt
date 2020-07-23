@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit
 
 class login_page : AppCompatActivity() {
 
-    lateinit var remember_me : CheckBox
+    lateinit var remember : CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -134,6 +134,7 @@ class login_page : AppCompatActivity() {
                     // If the user and password is correct
 
                     if (response.code() == 200) {
+
                         //Acces the token sent by django bakend in the response body
 
                         val Token = gson.fromJson(responsebody, Auth_token::class.java)
@@ -173,9 +174,9 @@ class login_page : AppCompatActivity() {
 
                         // Saving the token to local machine..
 
-                        remember_me = findViewById(R.id.remember_me) as CheckBox
+                        remember = findViewById(R.id.remember_me) as CheckBox
 
-                        if(remember_me.isChecked) {
+                        if(remember.isChecked) {
                             Preferences.setAccessToken(this@login_page, Token.auth_token)
                         }
                         dialog.dismiss()
@@ -189,8 +190,6 @@ class login_page : AppCompatActivity() {
                 }
 
             })
-            dialog.dismiss()
-            finish()
         } catch (e: Exception) {
             e.printStackTrace()
         }

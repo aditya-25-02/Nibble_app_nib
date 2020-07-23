@@ -19,24 +19,25 @@ class Nibblites : AppCompatActivity() {
     }
     override fun onStart() {
         super.onStart()
+        fetchJson()
+    }
 
-        //Loading..
+    private fun fetchJson () {
+
+        println ("Fetching nibblites data ..")
+
+        // Loading animation ...
         var dialog = Dialog(this,android.R.style.Theme_Translucent_NoTitleBar)
         val view = this.layoutInflater.inflate(R.layout.custom_loading_effect,null)
         dialog.setContentView(view)
         dialog.setCancelable(false)
         dialog.show()
 
-        fetchJson(dialog)
-    }
-
-    private fun fetchJson (dialog: Dialog) {
-
-        println ("Fetching nibblites data ..")
-
-        //Token
+        // django Token from local machine
         val validate =login_page.Preferences.getAccessToken(this)
         val token = "Token "+ validate
+
+        // requesting to the nibblites API
 
         val client = OkHttpClient().newBuilder()
             .build()
@@ -52,7 +53,6 @@ class Nibblites : AppCompatActivity() {
                 println(body)
 
                 val gson = GsonBuilder().create()
-
                 val homefeed = gson.fromJson(body,Array<Homefeed>::class.java )
 
                 //run it on the UI thread otherwise it will cause an error
@@ -69,7 +69,7 @@ class Nibblites : AppCompatActivity() {
     }
 }
 class Homefeed (val year: String ,val full_name: String ,val email: String , val profile_pic: String , val club: String ,val phone_no: String, val designation: String, val profiles: Array<Links>)
-class Links ( val link: String ,val website : String)
+class Links ( val link: String)
 
 
 

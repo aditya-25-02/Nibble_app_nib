@@ -16,13 +16,21 @@ import okhttp3.*
 val TAG = "My Firebase"
 
 class FirebaseService: FirebaseMessagingService() {
+
+    // if a new token is created by firebase this function is called
     override fun onNewToken(token: String) {
         Log.d( TAG, "My Firebase Token: $token")
+
+        //extracting django token
         val django_token = login_page.Preferences.getAccessToken(this)
         val Token = "Token " + django_token
+
+        // On new firebase code i need to send it again to django backend to use push notification service smoothly
         sendTokenToServer(token,Token)
     }
-    // To create foreground notification
+
+    // To create foreground notification (google handles only background notification)
+    //so creating a function to show the same notification if the app is currently using
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
@@ -54,7 +62,13 @@ class FirebaseService: FirebaseMessagingService() {
         manager.notify(0, builder.build())
     }
 }
+
+// function to send the newly generated token to django backend
+
 fun sendTokenToServer(token: String , Token: String ) {
+
+    // token -> newly generated firebase token
+    // Token -> django token
     val client = OkHttpClient().newBuilder()
         .build()
     val mediaType: MediaType? = MediaType.parse("text/plain")

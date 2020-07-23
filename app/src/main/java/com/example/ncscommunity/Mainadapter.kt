@@ -13,13 +13,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.nib_row.view.*
 
+// adapter class for nibblites section
 class Mainadapter (val homefeed: Array<Homefeed> , val context: Context)  : RecyclerView.Adapter <CustomViewHolder>() {
 
+    // number of members
     override fun getItemCount(): Int {
         return homefeed.count()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
+
         //how do we create a view
         val layoutInflater = LayoutInflater.from(parent?.context)
         val cellForRow = layoutInflater.inflate(R.layout.nib_row,parent,false)
@@ -27,8 +30,13 @@ class Mainadapter (val homefeed: Array<Homefeed> , val context: Context)  : Recy
 
     }
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+
         // parsing data into the view
+
+        // getting current member
         val obj = homefeed.get(position)
+
+        // extracting values and putting values in the current member view
         holder.view.nib_name.text = obj.full_name
         holder.view.nib_club.text = obj.club
         holder.view.nib_work.text = "("+obj.designation+")"
@@ -46,7 +54,6 @@ class Mainadapter (val homefeed: Array<Homefeed> , val context: Context)  : Recy
         Picasso.get().load(obj.profile_pic).into(image)
 
         // Setting onclick listener for every member
-
         holder.view.nib_call.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+Uri.encode(number)))
             context.startActivity(intent)

@@ -21,23 +21,24 @@ class projects : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        //Loading..
+        fetchJson()
+    }
+
+    private fun fetchJson () {
+        println ("Fetching project data ..")
+
+        // Loading animation..
         var dialog = Dialog(this,android.R.style.Theme_Translucent_NoTitleBar)
         val view = this.layoutInflater.inflate(R.layout.custom_loading_effect,null)
         dialog.setContentView(view)
         dialog.setCancelable(false)
         dialog.show()
 
-        fetchJson(dialog)
-    }
-
-    private fun fetchJson (dialog:Dialog) {
-        println ("Fetching project data ..")
-
-        //token
+        // django token from local machine
         val validate = login_page.Preferences.getAccessToken(this)
         val token = "Token "+ validate
 
+        // request to project API
         val client = OkHttpClient().newBuilder()
             .build()
         val request: Request = Request.Builder()
@@ -64,7 +65,7 @@ class projects : AppCompatActivity() {
         })
     }
 }
-class Projectfeed (val team : Array<Team>  , val project_name: String , val project_description: String ,val techstack: Techstack ,val background: String ,val github: String , val started_year: Int ,val last_modified: Int , val icon: String)
+class Projectfeed (val team : Array<Team>  , val project_name: String , val project_description: String ,val techstack: Techstack ,val background: String ,val github: String)
 class Team (val full_name : String)
 class Techstack( val languages :Array<Languages> , val frontend_techs : Array<Frontend>, val backend_techs : Array<Backend> , val app_techs : Array<App>)
 class Languages(val language : String)

@@ -45,6 +45,8 @@ class projectAdapter (val projectfeed: Array<Projectfeed>, val context: Context)
         val tech_used = obj.techstack
         var tech_stack: String = ""
 
+        // to get all the stack in one string
+
         for(t in 0 until tech_used.languages.size){
             var temp = tech_used.languages[t].language+"\n"
             tech_stack+=temp
@@ -64,8 +66,11 @@ class projectAdapter (val projectfeed: Array<Projectfeed>, val context: Context)
 
         holder.view.project_team.text = team_members
         holder.view.project_stack2.text = tech_stack
+
+        //setting scroll view
         holder.view.project_stack2.movementMethod = ScrollingMovementMethod()
         holder.view.project_team.movementMethod = ScrollingMovementMethod()
+
         holder.view.project_name.text = p_name
         holder.view.project_desc.text = p_des
 

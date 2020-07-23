@@ -26,17 +26,18 @@ class schedule : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        fetchJSON()
+    }
+
+    private fun fetchJSON() {
+
+
         //Loading..
         var dialog = Dialog(this,android.R.style.Theme_Translucent_NoTitleBar)
         val view = this.layoutInflater.inflate(R.layout.custom_loading_effect,null)
         dialog.setContentView(view)
         dialog.setCancelable(false)
         dialog.show()
-
-        fetchJSON(dialog)
-    }
-
-    private fun fetchJSON(dialog:Dialog) {
 
         val url = "https://ojuswi.pythonanywhere.com/Attend/Schedule/"
 

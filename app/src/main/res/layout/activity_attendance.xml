@@ -46,9 +46,9 @@
 
     <TextView
         android:id="@+id/scan_txt"
-        android:layout_width="297dp"
-        android:layout_height="79dp"
-        android:text=" Scan the QR code to mark your attendence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="      Scan the QR code \n to mark your attendance"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/scan_btn"

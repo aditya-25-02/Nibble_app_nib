@@ -11,8 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/sch_topic"
-        app:layout_constraintEnd_toStartOf="@+id/sch_topic"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/sch_announcer"
         app:layout_constraintTop_toTopOf="@+id/sch_topic"
         app:layout_constraintVertical_bias="0.533"
@@ -32,13 +30,13 @@
 
     <ImageView
         android:id="@+id/imageView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="77dp"
+        android:layout_height="96dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sch_lab_sp_msg"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_clock" />
 
@@ -46,11 +44,12 @@
         android:id="@+id/imageView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="352dp"
-        android:layout_marginLeft="352dp"
-        android:layout_marginBottom="624dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_leaf_right" />
 
     <TextView
@@ -63,10 +62,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.216"
+        app:layout_constraintHorizontal_bias="0.268"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.172" />
+        app:layout_constraintVertical_bias="0.135" />
 
     <TextView
         android:id="@+id/sch"
@@ -99,16 +98,16 @@
 
     <TextView
         android:id="@+id/sch_topic"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="30dp"
         android:text="Today's lab topic is Test lab"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.251"
-        app:layout_constraintStart_toStartOf="@+id/sch_announcer"
+        app:layout_constraintHorizontal_bias="0.261"
+        app:layout_constraintStart_toEndOf="@+id/sch_lab_topic"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <ImageView
@@ -120,28 +119,28 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/sch_lab_topic"
         app:layout_constraintTop_toTopOf="@+id/sch_lab_time"
-        app:layout_constraintVertical_bias="0.466"
+        app:layout_constraintVertical_bias="0.45"
         app:srcCompat="@drawable/ic_dot" />
 
     <TextView
         android:id="@+id/sch_lab_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_width="321dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="35dp"
         android:text="Lab will start at 4:00 pm sharp"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/sch_topic"
+        app:layout_constraintHorizontal_bias="0.363"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
         app:layout_constraintTop_toBottomOf="@+id/sch_topic" />
 
     <TextView
         android:id="@+id/sch_lab_sp_msg"
-        android:layout_width="285dp"
-        android:layout_height="164dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/ic_rectangle_228"
         android:padding="5dp"
         android:scrollbars="vertical"
@@ -149,10 +148,12 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/imageView18"
-        app:layout_constraintTop_toBottomOf="@+id/sch_lab_venue" />
+        app:layout_constraintTop_toBottomOf="@+id/sch_lab_sp"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView18"
@@ -169,14 +170,14 @@
         android:id="@+id/sch_lab_venue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="35dp"
         android:text="Today's lab is in LAB-5"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/sch_lab_time"
+        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintStart_toEndOf="@+id/imageView18"
         app:layout_constraintTop_toBottomOf="@+id/sch_lab_time" />
 
     <TextView
@@ -186,7 +187,7 @@
         android:text="announces that"
         android:textColor="@color/black"
         android:textSize="25sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -198,13 +199,14 @@
         android:id="@+id/sch_lab_sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:text="Special Note : "
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/imageView18"
-        app:layout_constraintTop_toBottomOf="@+id/sch_lab_venue" />
+        app:layout_constraintTop_toBottomOf="@+id/sch_lab_venue"
+        app:layout_constraintVertical_bias="0.168" />
 </androidx.constraintlayout.widget.ConstraintLayout>
