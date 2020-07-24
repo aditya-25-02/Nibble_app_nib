@@ -111,11 +111,11 @@
         app:srcCompat="@drawable/ic_login_btn" />
 
 
-
     <CheckBox
         android:id="@+id/remember_me"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:buttonTint="#FFFFFF"
         android:text="Remember me"
         android:textColor="#FFF"
         app:layout_constraintBottom_toTopOf="@+id/loginbtn"

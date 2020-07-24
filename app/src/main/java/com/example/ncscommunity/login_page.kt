@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -186,6 +187,7 @@ class login_page : AppCompatActivity() {
                     }
                 }
                 override fun onFailure(call: Call, e: IOException) {
+                    dialog.dismiss()
                     print("Failed to log in....(internet error / backend error")
                 }
 

@@ -18,13 +18,22 @@
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation" />
-        <activity android:name=".attendance"></activity>
-        <activity android:name=".projects" />
-        <activity android:name=".Nibblites" />
-        <activity android:name=".login_page" />
-        <activity android:name=".schedule" />
-        <activity android:name=".Main2Activity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".attendance"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".projects"
+                  android:screenOrientation="portrait"
+            />
+        <activity android:name=".Nibblites"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".login_page"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".schedule"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Main2Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
