@@ -1,4 +1,4 @@
-package com.example.ncscommunity
+   package com.example.ncscommunity
 
 import android.content.Context
 import android.content.Intent
@@ -42,7 +42,7 @@ class Mainadapter (val homefeed: Array<Homefeed> , val context: Context)  : Recy
         holder.view.nib_work.text = "("+obj.designation+")"
         holder.view.nib_year.text = obj.year
 
-        val number = obj.phone_no.trim()
+        val num: String? = obj.phone_no
         val mail = obj.email
         val linkedin = obj.profiles.get(0).link
         val git = obj.profiles.get(1).link
@@ -54,9 +54,12 @@ class Mainadapter (val homefeed: Array<Homefeed> , val context: Context)  : Recy
         Picasso.get().load(obj.profile_pic).into(image)
 
         // Setting onclick listener for every member
-        holder.view.nib_call.setOnClickListener {
-            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+Uri.encode(number)))
-            context.startActivity(intent)
+        if(num!=null) {
+            val number = obj.phone_no.trim()
+            holder.view.nib_call.setOnClickListener {
+                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + Uri.encode(number)))
+                context.startActivity(intent)
+            }
         }
         holder.view.nib_mail.setOnClickListener {
             val intent = Intent(Intent.ACTION_SENDTO,Uri.parse("mailto:"+Uri.encode(mail)))

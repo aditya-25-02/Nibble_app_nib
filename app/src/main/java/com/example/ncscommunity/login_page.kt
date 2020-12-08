@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.iid.FirebaseInstanceId
@@ -184,6 +185,16 @@ class login_page : AppCompatActivity() {
                         val i = Intent(this@login_page, Main2Activity::class.java)
                         startActivity(i)
                         finish()
+                    }
+                    else {
+                        runOnUiThread() {
+                            dialog.dismiss()
+                            Toast.makeText(
+                                this@login_page,
+                                "Wrong credentials!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
                 override fun onFailure(call: Call, e: IOException) {
