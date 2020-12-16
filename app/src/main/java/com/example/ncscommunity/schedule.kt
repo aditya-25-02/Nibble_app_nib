@@ -32,8 +32,6 @@ class schedule : AppCompatActivity() {
     }
 
     private fun fetchJSON() {
-
-
         //Loading..
         var dialog = Dialog(this,android.R.style.Theme_Translucent_NoTitleBar)
         val view = this.layoutInflater.inflate(R.layout.custom_loading_effect,null)
@@ -75,6 +73,7 @@ class schedule : AppCompatActivity() {
                         builder.setNegativeButton("leave",{ dialogInterface: DialogInterface, i: Int ->
                             finish()
                         })
+                        builder.setCancelable(false)
                         builder.show()
                     }
 

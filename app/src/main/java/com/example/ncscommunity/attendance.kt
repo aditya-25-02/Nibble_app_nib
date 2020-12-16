@@ -32,10 +32,8 @@ class attendance : AppCompatActivity() {
         val today  = Calendar.getInstance()
         val date = SimpleDateFormat("MMMM d,Y").format(today.time)
         attendance_date.text = date
-
-
+        
         scan_btn.setOnClickListener {
-
             // Scanner code
             val scanner =  IntentIntegrator(this)
             // only scanning QR CODE
